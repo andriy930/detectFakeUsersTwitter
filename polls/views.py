@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from twython import Twython  
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
+from dateutil.parser import parse
 import json
 import re
 def index(request):
@@ -40,12 +41,12 @@ def panelControl(request):
 			removeAt = re.search('\w+', name)
 			name = removeAt.group(0)
 			data = api.get_followers_list(screen_name=name)
+			dataUsr = api.show_user(screen_name=name)
+			# print data
 			usuarios = {}
+			elUsuario = dataUsr['name']
 			for usuario in data['users']:
-				perfilFalso = 0
-
-				#Nombre de usuario
-				print usuario['screen_name']
+				perfilFalso = 0 
 
 				#ID USUAIRO
 				# print usuario['id']
@@ -75,11 +76,22 @@ def panelControl(request):
 				if 50 >= usuario['friends_count']:
 					perfilFalso+=1
 
-				print usuario['created_at']
-				# print datetime.datetime.strptime(usuario['created_at'], "%a %b %d %Y").strftime("%d/%m/%Y")
+
+
+				hoy = datetime.now()
+				dt = parse(usuario['created_at']) 
+
+				dt = dt.strftime('%d-%m-%Y')
+				fechaHoy= hoy.strftime("%d-%m-%Y")
+				formato_fecha = "%d-%m-%Y"
+				fecha_inicial = datetime.strptime(dt, formato_fecha)
+				fecha_final = datetime.strptime(fechaHoy, formato_fecha)
+				diferencia = fecha_final - fecha_inicial
+
+				
 				#Fecha de cracion de cuenta
-				# if usuario['created_at'] :
-				# 	perfilFalso++
+				if 300>=diferencia.days:
+				 	perfilFalso+=1
 
 
 				#Personas que le siguen
@@ -87,16 +99,19 @@ def panelControl(request):
 					perfilFalso+=1
 
 				usuarios[usuario['screen_name']] = perfilFalso
+				
 			usrFalsos = 0
 			usrSospect = 0
 			usrAnalized = len(usuarios)
+
 			for key, value in usuarios.iteritems():
 				if 4 <= value:
 					usrFalsos+=1
-				elif 2 <= value:
+				elif 3 <= value:
 					usrSospect+=1
 
-			context = {'usrFalsos':usrFalsos, 'usrSospect':usrSospect, 'usrAnalized':usrAnalized}
+			usrVerificados = usrAnalized-usrFalsos-usrSospect
+			context = {'usrFalsos':usrFalsos, 'usrSospect':usrSospect, 'usrAnalized':usrAnalized, 'elUsuario':elUsuario,'usrVerificados':usrVerificados}
 			template = loader.get_template('polls/dataResult.html')
 			return HttpResponse(template.render(context))
 	else:
