@@ -40,7 +40,7 @@ def panelControl(request):
 			#QUE EL NOMBRE NO TENGA @
 			removeAt = re.search('\w+', name)
 			name = removeAt.group(0)
-			data = api.get_followers_list(screen_name=name)
+			data = api.get_followers_list(screen_name=name ,count=200) 
 			dataUsr = api.show_user(screen_name=name)
 			# print data
 			usuarios = {}
