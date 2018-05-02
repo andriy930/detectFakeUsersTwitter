@@ -8,5 +8,5 @@
 
 ## Para ejecutar el proyecto situarse en la carpeta raiz que contiene manage.py
 
--$python manage.py runserver
+- $python manage.py runserver
 
