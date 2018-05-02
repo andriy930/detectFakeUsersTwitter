@@ -1,12 +1,12 @@
 # detectFakeUsersTwitter
 
-## Tener instalado 
-- __$ sudo pip install --upgrade pip
+## Tener instalado:
+- $sudo pip install --upgrade pip
 - $python
-- $pip install Twython__
+- $pip install Twython
 
 
->Para ejecutar el proyecto situarse en la carpeta raiz que contiene manage.py
+## Para ejecutar el proyecto situarse en la carpeta raiz que contiene manage.py
 
-#$python manage.py runserver
+-$python manage.py runserver
 
