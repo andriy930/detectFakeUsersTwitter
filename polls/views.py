@@ -10,15 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from dateutil.parser import parse
 import json
 import re
-def index(request):
-	# consumer_key = "694VnNmdaQWvMqyb2qA7UjLaL"
-	# consumer_secret = "CfTL1wnftIavKQZPa0K9e26oKAHteIheUUQz8EeMeTqiAvrXvw"
-	# access_token  ="974318757815472130-Flm3bmXS6jP0imR6NggglcYN54x7Pth"
-	# access_token_secret  ='xXDaNdnU6qYY2EoR5QIm392ICBDnBPnSh9P6UlFO4EG1J'
-	# api = Twython(app_key=consumer_key, app_secret=consumer_secret, oauth_token=access_token, oauth_token_secret=access_token_secret)
-	# data = api.get_followers_list(screen_name='joanribo')
-
-	# latest_question_list = data['users']
+def index(request): 
 	
 	latest_question_list = ""
 	#Template 
