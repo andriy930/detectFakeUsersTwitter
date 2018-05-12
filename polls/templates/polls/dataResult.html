@@ -57,29 +57,32 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 single-fact">
-							<h1>{{ elUsuario }}</h1>
+							<h1>Analisis de: {{ elUsuario }}</h1>
 						</div>
 					</div>
 				</div>
 				</br>
 				<div class="container">
-					<div class="row">
-						<div class="col-lg-3 col-md-6 single-fact">
-							<h2 class="counter">{{ usrVerificados }}</h2>
-							<p class="text-uppercase">Perfiles Validos</p>
-						</div>
+					<div class="row">						
 						<div class="col-lg-3 col-md-6 single-fact">
 							<h2 class="counter"> {{ usrAnalized }}</h2>
-							<p class="text-uppercase">Cuentas Analizadas</p>
+							<p class="text-uppercase" style="height: 44px;">Cuentas Analizadas<br></p>
+							<p> <img src="{% static 'img/shield_grey.png'%}"></p>
+						</div>
+						<div class="col-lg-3 col-md-6 single-fact">
+							<h2 class="counter">{{ usrVerificados }}</h2>
+							<p class="text-uppercase" style="height: 44px;">Perfiles Validos<br></p>
+							<p> <img src="{% static 'img/shield_green.png'%}"></p>
 						</div>
 						<div class="col-lg-3 col-md-6 single-fact">
 							<h2 class="counter">{{ usrSospect }}</h2>
-							<p class="text-uppercase">Perfiles sospechosos</p>
+							<p class="text-uppercase" style="height: 44px;">Perfiles sospechosos</p>
+							<p> <img src="{% static 'img/shield_yellow.png'%}"></p>
 						</div> 
 						<div class="col-lg-3 col-md-6 single-fact">
-
-							<h2 class="counter">{{ usrFalsos }}</h2>
-							<p class="text-uppercase">Perfiles Falsos</p>
+							<h2 class="counter" >{{ usrFalsos }}</h2>
+							<p class="text-uppercase" style="height: 44px;">Perfiles Falsos<br></p>
+							<p> <img src="{% static 'img/shield_red.png'%}"></p>
 						</div>
 					</div>
 				</div>
